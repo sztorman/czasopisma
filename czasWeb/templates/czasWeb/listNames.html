@@ -1,0 +1,47 @@
+{% extends templates.base %}
+
+{% block content %}
+<div id="content_part">
+      <hr>
+      <h1 class="block">&nbsp;</h1>  
+      <div id="letters" class="wrap block">
+      {% for l in years %}
+        <div class="letter_wrap active">
+          <a class="letter" href="{% url 'czasWeb.views.listMagazines' l 1 %}" title="">{{ l }}</a>
+        </div>
+      {% endfor %}
+      </div>
+
+      <div id="results_names" class="block wrap">
+        <div class="vertical_border_1"></div>
+        <div class="vertical_border_2"></div>
+
+        <ul id="" class="lined_links columnised">
+        {% for a in qs %}
+          <li><a href="{% url 'czasWeb.views.searchResults' %}?type=adv&view=grid&tytul={{ a.tytul }}" title="">{{ a.tytul }}</a></li>
+        {% endfor %}
+
+        
+        
+        </ul>
+      </div>
+    {% if page.has_other_pages %}
+      <ul class="horisontal_menu block pagination">
+          {% if pages.0.has_previous %}<li><a href="{{ pageUrl }}&pageNo={{ pages.0.previous_page_number }}" title=""><span class="icon">< </span>Poprzednia</a></li>{% endif %}
+          {% if pages.0.has_previous %}
+          	<li ><a href="{{ pageUrl }}" title="">1</a></li>
+          	<li class="hellip">&hellip;</li>
+          {% endif %}
+          {% for pp in pages %}
+            <li{% if pp.number = page|add:0 %} class="active"{% endif %}><a href="{{ pageUrl }}&pageNo={{ pp.number }}" title="">{{ pp.number }}</a></li>
+          {% endfor %}
+          {% if pages.6.has_next %}
+          	<li class="hellip">&hellip;</li>
+          	<li><a href="{{ pageUrl }}&pageNo={{ p.num_pages }}" title="">{{ p.num_pages }}</a></li>
+          {% endif %}
+          {% if pages.6.has_next %}<li><a href="{{ pageUrl }}&pageNo={{ pages.6.next_page_number }}" title="">Następna<span class="icon right"> ></span></a> </li>{% endif %}
+        </ul>
+    {% endif %}
+
+    </div>
+{% endblock %}

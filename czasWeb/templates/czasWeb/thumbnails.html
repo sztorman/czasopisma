@@ -1,0 +1,26 @@
+{% extends templates.base_browse %}
+{% load staticfiles %}
+
+{% block content %}
+    <div id="content_part" class="deeper_view">
+      <hr>
+      
+      <div class="wrap small_thumbs_cont_depper">
+
+        {% for t in qs %}
+          <div class="thumb_wrap">
+            <a class="thumb_link block_link" href="{% url 'czasWeb.views.zoom' parent.id forloop.counter0|add:page.start_index %}" title="">
+              <div class="img_cont">
+                <img class="canvas_image" src="{% static 'images/blank.gif' %}" alt="">
+                <img src="{% static t %}" alt="">                    
+              </div>
+              <div class="img_label">
+                {{ forloop.counter0|add:page.start_index }}
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}

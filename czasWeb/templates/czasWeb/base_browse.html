@@ -1,0 +1,103 @@
+{% extends templates.base %}
+{% load staticfiles %}
+
+{% block header %}
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{% static 'fonts/modern-pictograms/stylesheet.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+  <script src="{% static 'scripts/jquery-1.7.2.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'scripts/jquery.dotdotdot-1.5.7-packed.js' %}" type="text/javascript"></script>
+  <script src="{% static 'scripts/gridPreview.js' %}" type="text/javascript"></script>
+  <script src="{% static 'scripts/util.js' %}" type="text/javascript"></script>
+  <script src="{% static 'scripts/dev_app.js' %}" type="text/javascript"></script>
+  {% if chnagePageLink = 'czasWeb.views.zoom' %}
+  <script src="{% static 'scripts/jquery.mousewheel.min.js' %}" type="text/javascript"></script>
+  {% endif %}
+  <script src="{% static 'scripts/application.js' %}" type="text/javascript"></script>
+</head>
+<body>
+  <div id="main_conteiner">
+    
+     <div id="top_panel">
+         <div class="first_line">
+          <div class="wrap">
+            <div class="back_button_wrap">
+              <a href="{% url 'czasWeb.views.single' parent.id %}" class="back_button" title=""><span class="icon">&lt; </span>{{ parent.wariant_tytulu }}</a>
+            </div>
+           <div class="right_box page">
+             <a href="{% if page.has_previous %}{% url chnagePageLink parent.id page.previous_page_number %}{% else %}#{% endif %}" class="left previous">
+              <span class="icon">&lt; </span>
+             </a>
+             <a href="{% if page.has_next %}{% url chnagePageLink parent.id page.next_page_number %}{% else %}#{% endif %}" class="right next">
+              <span class="icon">&gt; </span>
+             </a>
+             <span class="numbers">{% if page.start_index = page.end_index %}{{ page.end_index }}{% else %}{{ page.start_index }}-{{ page.end_index }}{% endif %} / {{ paginator.count }}</span>
+           </div>
+          </div>
+         </div>
+
+         <div class="second_line">
+          <div class="wrap">
+            <div class="select_boxes_wrap">         
+              <div class="select_box">
+                <div class="select_wrapper">
+                  <select name="" onchange="document.location.href=this.value">
+                    <option selected value="" >- Wybierz stronę -</option>
+                    {% for p in paginator.page_range %}
+                    <option value="{% url chnagePageLink parent.id p %}">{{ p }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="select_box">
+                <div class="select_wrapper">
+                  <select name="" onchange="document.location.href=this.value">                    
+                    {% with 'czasWeb.views.zoom' as opt %}
+                    <option {% if opt = chnagePageLink %}selected{% endif %} value="{% url opt  parent.id pt.zoom %}">Jedna strona</option>{% endwith %}
+                    {% with 'czasWeb.views.double' as opt %}
+                    <option {% if opt = chnagePageLink %}selected{% endif %} value="{% url opt parent.id pt.double %}">Otwarta książka</option>{% endwith %}
+                    {% with 'czasWeb.views.showThumbnails' as opt %}
+                    <option {% if opt = chnagePageLink %}selected{% endif %} value="{% url opt parent.id pt.thumbnail %}">Miniatury</option>{% endwith %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            {% if sharebox = 1 %}
+                {% include templates.share %}
+            {% endif %}
+         </div>
+
+       <hr>
+     </div></div>
+
+{% endblock %}
+
+{% block footer %}
+<div id="footer" class="box">  
+      <hr>
+      <div class="wrap">
+        <ul id="footer_menu" class="horisontal_menu block">
+          <li><a href="{% url 'czasWeb.views.about' %}" title="">O projekcie</a></li>
+          <li><a href="{% url 'czasWeb.views.resource' %}" title="">O zasobie</a></li>
+        </ul>
+
+         <div class="right_footer">
+        O ile nie zaznaczono inaczej, materiały na stronie dostępne są na licencji CC-BY-SA pewne prawa zastrzeżone dla Fundacja Klio i Muzeum Historii Polski.
+          <!-- &copy; 2013 Museum Historii Polski <br> -->
+          Projekt strony: <a href="http://veshch.com" target="_blank" title="">Veshch</a>
+        </div>
+        
+      </div>
+      <div class="clear"></div>
+
+    </div>
+
+  </div>
+</body>
+</html>
+{% endblock %}

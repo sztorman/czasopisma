@@ -1,0 +1,53 @@
+<div id="share_box">
+            
+            
+            <div class="icon_li download_icon"><a href="#" title="Pobierz"><span class="icon"></span></a>
+
+              <div id="downlaod_box">
+                <h1 class="block">Pobierz</h1>
+                <form method="GET" action="{% url 'czasWeb.views.download' %}">
+            	  <input type="hidden" name="obId" value="{{ obj.pk }}" />
+                  <div class="form_row">
+                    <div class="radio"><input id="exPage" name="exportType" value="page" type="radio"></div>
+                    {% if qs %}
+	                    {% for obj in qs %}
+	                    <input type="hidden" name="file" value="{{ obj }}" />
+	                    {% endfor %}
+                    {% else %}
+	                    <input type="hidden" name="file" value="{{ obj.pk }}" />
+                    {% endif %}
+                    
+                    <div class="input_column"><span>Bieżącą stronę (jpg) </span></div>
+                  </div>
+
+                  <div class="form_row">
+                    <div class="radio"><input name="exportType" value="full" type="radio"></div>
+                    <div class="input_column"><span>Cały druk (pdf)</span></div>
+                  </div>
+
+                  <div class="form_row">
+                    <div class="radio"><input name="exportType" value="pages" type="radio"></div>
+                    <div class="input_column">
+                      <span>Wybrane strony (pdf)</span><br>
+                      <span>od:</span> <input class="data" name="stronyOd" type="text" placeholder="|">
+                      <span>do:</span> <input class="data" name="stronyDo" type="text" placeholder="|">
+                  </div>
+                  </div>
+
+                  <div class="submit_conteiner">
+                     
+                    <div class="wrap">
+                      <div class="button_wrap">
+                        <button id="downloadButton" type="submit">Pobierz</button>
+                      </div> 
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+            <div class="icon_li share_icon"><a href="#" title="Udostępnij"><span class="icon"></span></a></div>
+                 <ul class="horisontal_menu share_menu">
+              {% include templates.social %}  
+            </ul>
+            </div>

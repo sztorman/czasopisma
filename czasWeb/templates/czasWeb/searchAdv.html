@@ -1,0 +1,48 @@
+{% extends templates.base %}
+
+{% block content %}
+    <div id="content_part">
+      <hr>
+
+      <!-- <a href="" title="">Więcej o projekcie</a>  -->
+
+      <form method="GET" action="{% url 'czasWeb.views.searchResults' %}" id="advanced_search_form">
+        <input type="hidden" name="type" value="adv">
+        <input type="hidden" name="view" value="grid">
+        
+        <div class="form_row">
+          <label>Rocznik:</label>
+          <div class="input_column"><input name="rocznik" type="text" placeholder="|"></div>
+        </div>
+
+        <div class="form_row">
+          <label> Numer:</label>
+          <div class="input_column"><input name="numer" type="text" placeholder="|"></div>
+        </div>
+
+        <div class="form_row">
+          <label>Treść:</label>
+          <div class="input_column"><input name="tresc" type="text" placeholder="|"></div>
+        </div>
+
+        <div class="form_row">
+          <label>Data wydania</label>
+           <div class="input_column">
+            <span>od:</span> <input name="dataOd" class="data" type="text" placeholder="|">
+            <span>do:</span> <input name="dataDo" class="data" type="text" placeholder="|">
+        </div></div>
+
+       
+        <div class="submit_conteiner">
+           <hr>
+          <div class="wrap">
+            <div class="button_wrap">
+              <button type="">Szukaj</button>
+            </div> 
+          </div>
+        </div>
+     
+      </form>  
+
+    </div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends templates.base_browse %}
+{% load staticfiles %}
+
+{% block content %}
+    <div id="content_part" class="deeper_view">
+      <hr>
+      
+      <div class="wrap double_page">
+
+    {% if qs.0 %}
+        <div class="thumb_wrap left">
+            <a class="thumb_link block_link" href="{% if page.has_previous %}{% url chnagePageLink parent.id page.previous_page_number %}{% else %}#{% endif %}" title="">
+              <div class="img_cont">
+                <img class="canvas_image" src="{% static 'images/blank.gif'  %}" alt="">
+                <img src="{% static qs.0 %}" alt="">                    
+              </div>
+              <div class="img_label">
+                {{ page.start_index|add:"-1" }}
+              </div>
+            </a>
+          </div>
+          {% else %}
+        <div class="thumb_wrap left">
+        </div>  
+    {% endif %}
+
+    {% if qs.1 %}
+          <div class="thumb_wrap right">
+            <a class="thumb_link block_link" href="{% if page.has_next %}{% url chnagePageLink parent.id page.next_page_number %}{% else %}#{% endif %}" title="">
+              <div class="img_cont">
+                <img class="canvas_image" src="{% static 'images/blank.gif'  %}" alt="">
+                <img src="{% static qs.1 %}" alt="">                    
+              </div>
+              <div class="img_label">
+                {{ page.start_index|add:"0" }}
+              </div>
+            </a>
+          </div>
+    {% endif %}
+
+          </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<div id="footer" class="box">  
+      <hr>
+      <div class="wrap">
+        <ul id="footer_menu" class="horisontal_menu block">
+          <li><a href="#" title="">O projekcie</a></li>
+          <li><a href="#" title="">O zasobie</a></li>
+        </ul>
+
+         <div class="right_footer">
+        O ile nie zaznaczono inaczej, materiały na stronie dostępne są na licencji CC-BY-SA pewne prawa zastrzeżone dla Fundacja Klio i Muzeum Historii Polski.
+          <!-- &copy; 2013 Museum Historii Polski <br> -->
+          Projekt strony: <a href="http://veshch.com" target="_blank" title="">Veshch</a>
+        </div>
+        
+      </div>
+      <div class="clear"></div>
+
+    </div>
+
+  </div>
+  </div>
+</body>
+</html>
+{% endblock %}

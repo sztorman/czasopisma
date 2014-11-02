@@ -1,0 +1,99 @@
+{% extends templates.base %}
+{% load staticfiles %}
+
+{% block content %}
+    <div id="content_part">
+        <hr>
+        <h2>{{ criteria }}</h2>
+      
+        <ul class="horisontal_menu">
+          <li><span>Pokaż: </span></li>
+          <li><a href="{{ viewUrl }}&view=grid" title="">Miniatury</a></li>
+          <li class="active"><a href="{{ viewUrl }}&view=list" title="">Lista</a> </li>
+        </ul>
+          <hr>
+        
+        <div class="medium_list_cont">
+        {% for st in qs %}
+          <div class="thumb_wrap">
+            <div class="wrap">
+              <div class="thumb_link_wrap">
+                <a class="thumb_link block_link" href="{% url 'czasWeb.views.single' st.id %}" title="">
+                  <div class="img_cont">
+                    <img class="canvas_image" src="{% static 'images/blank.gif' %}" alt="">
+                    <img src="{% static st.title_page_path_s %}" alt="">                    
+                  </div>
+                </a>
+              </div>
+            <div class="vertical_border"></div>
+            <div class="excerpt">
+              <h1 class="block"><a href="{% url 'czasWeb.views.single' st.id %}" title="">{{ st.wariant_tytulu }}</a></h1>
+
+
+
+              <ul class="metadata lined block">
+            <li>
+              <div class="wrap">
+                <div class="meta-label">
+                  Pełny tytuł:
+                </div>
+                <div class="meta-content">
+                  {{ st.tytul }}
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="wrap">
+                <div class="meta-label">
+                  Nazwa wydawcy:
+                </div>
+                <div class="meta-content">
+                  {{ st.nazwa_wydawcy }}
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="wrap">
+                <div class="meta-label">
+                  Miejsce wydania:
+                </div>
+                <div class="meta-content">
+                  {{ st.miejsce_wydania }}
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="wrap">
+                <div class="meta-label">
+                  Data wydania:
+                </div>
+                <div class="meta-content">
+                  {{ st.data_wydania }}
+                </div>
+              </div>
+            </li>
+          
+
+          </ul>
+            
+              <span class="icon">K</span><a href="{% url 'czasWeb.views.single' st.id %}" title="">Przeglądaj</a>
+              
+        
+            </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+
+        <ul class="horisontal_menu block pagination">
+          {% if pages.0.has_previous %}<li><a href="{{ pageUrl }}&pageNo={{ pages.0.previous_page_number }}" title=""><span class="icon">< </span>Poprzednia</a></li>{% endif %}
+          {% for pp in pages %}
+            <li{% if pp.number = page|add:0 %} class="active"{% endif %}><a href="{{ pageUrl }}&pageNo={{ pp.number }}" title="">{{ pp.number }}</a></li>
+          {% endfor %}
+          
+          {% if pages.6.has_next %}<li><a href="{{ pageUrl }}&pageNo={{ pages.6.next_page_number }}" title="">Następna<span class="icon right"> ></span></a> </li>{% endif %}
+        </ul>
+
+    </div>
+{% endblock %}

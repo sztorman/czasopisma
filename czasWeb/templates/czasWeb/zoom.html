@@ -1,0 +1,55 @@
+{% extends templates.base_browse %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <!-- <div id="footer" class="box">  
+      <hr>
+      <div class="wrap">
+        <div class="copy_info">&copy; 2013 Museum Historii Polski</div>
+        <div class="design_info">Design by <a href="http://veshch.com" target="_blank" title="">Veshch</a></div>
+      </div>
+      <div class="clear"></div>
+
+    </div> -->
+
+  {% for obj in qs %}
+  </div>
+  <div id="zoom_mask" class="vertical" attr-max="3000" >
+    <img src="{% static obj %}" alt="">   
+  </div>
+  {% endfor %}
+  
+ <!--   <div id="zoom_mask" class="horisontal" attr-max="3000" >
+    <img src="images/starodruk_horisontal.jpg" alt="">                    
+  </div>
+ -->
+        
+        <div id="zoom_box" class="zoom">
+             <a class="left zoomout">
+              <span>-</span>
+             </a>
+             <a class="right zoomin">
+              <span>+</span>
+             </a>
+             <div class="zoom_line">
+             <div class="slider_base">
+                <div class="slider_real_base">
+                  <div class="slider_dot">
+                    <div class="slider_real_dot">
+                  </div>
+                </div>
+             </div>
+            </div>
+           </div>
+
+          </div>
+      
+       
+{% endblock %}
+
+{% block footer %}
+
+</body>
+</html>
+{% endblock %}

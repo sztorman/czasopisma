@@ -1,0 +1,108 @@
+{% extends templates.base %}
+{% load staticfiles %}
+
+{% block content %}
+    <div id="content_part">
+        <hr>
+      <div id="single_info" class="wrap">
+        <div class="vertical_border"></div>
+        <div id="single_info_left" class="col">
+            <div class="block">
+              <a id="big_img" class="block_link" href="{% url 'czasWeb.views.showThumbnails' obj.id 1 %}" title="">
+                <div class="img_cont">
+                    <img class="canvas_image" src="{% static 'images/blank.gif' %}" alt="">
+                    <img src="{% static obj.title_page_path_m %}" alt="">                    
+                </div>
+                <ul class="horisontal_menu block img_label">
+                  <li><span class="icon">E</span><span style="text-decoration: underline">Widok wszystkich stron numeru</span></li>
+                </ul>
+              </a>
+              </div>
+              <hr>
+              <div class="small_thumbs_cont wrap">
+              
+              </div>
+
+        </div>
+
+        <div id="single_info_right" class="col">
+          <h1 class="block">{{ obj.wariant_tytulu }}</h1>
+          <div class="wrap">
+            <div class="block description">
+              <p>{{ obj.zawartosc_strony_tytulowej }}</p>              
+            </div>
+        </div>
+
+          {% include templates.share %}
+
+          <h2>Metadane</h2>
+
+          <ul class="metadata lined block">
+            <li>
+              <div class="wrap">
+                <div class="meta-label">
+                  Pełny tytuł:
+                </div>
+                <div class="meta-content">
+                  {{ obj.tytul }}
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="wrap">
+                <div class="meta-label">
+                 Nazwa wydawcy:
+                </div>
+                <div class="meta-content">
+                  {{ obj.nazwa_wydawcy }}
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="wrap">
+                <div class="meta-label">
+                  Miejsce wydania:
+                </div>
+                <div class="meta-content">
+                  {{ obj.miejsce_wydawania }}
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="wrap">
+                <div class="meta-label">
+                 Data:
+                </div>
+                <div class="meta-content">
+                  {{ obj.data_wydania }}
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="wrap">
+                <div class="meta-label">
+                 Sygnatura:
+                </div>
+                <div class="meta-content">
+                  {{ obj.sygnatura }}
+                </div>
+              </div>
+            </li>
+             
+
+          </ul>
+
+
+<!--           <ul class="lined block">
+            <li>Molestie augue</li>
+            <li>Proin vel ante a orci</li>
+            <li class="bigfont">245</li>
+            <li>Aliquam erat volutpat</li>
+          </ul>
+ -->
+
+
+        </div>
+      </div>
+    </div>
+{% endblock %}

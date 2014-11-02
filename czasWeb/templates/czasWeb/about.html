@@ -1,0 +1,43 @@
+{% extends templates.base %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div id="content_part">
+      <hr>
+      <h1 class="block">O projekcie</h1>
+      <!-- <a href="" title="">Więcej o projekcie</a>  -->
+      <hr>
+      <div class="wrap">
+        <div class="description_small">
+          <p>
+Serwis prezentuje stare druki z kolekcji Instytutu Historycznego Uniwersytetu Warszawskiego. Projekt digitalizacji został zrealizowany przez Fundację Naukową Przyjaciół IH UW "Klio" we współpracy z zespołem BazHum Muzeum Historii Polski i Biblioteką Instytutu Historycznego UW. 
+</p><p>
+System do prezentacji dostępny jest na wolnej licencji GNU GPL.
+</p><p>
+Projekt przeprowadzono dzięki dofinansowaniu programu "Dziedzictwo Cyfrowe" NInA.
+        </p>
+        <p class="logos_v2">
+          <a class="logo_link " href="http://www.nina.gov.pl/" target="_blank" title=""><img class="logo" src="{% static 'images/nina_logo_fit.png' %}"/></a>
+          <a class="logo_link " href="http://www.nina.gov.pl/digitalizacja/artyku%C5%82/2011/06/26/dziedzictwo-cyfrowe-program-w%C5%82asny-narodowego-instytutu-audiowizualnego" target="_blank"  title=""><img class="logo" src="{% static 'images/dc_logo_fit.png' %}"/></a>
+          <a class="logo_link " href="http://www.mkidn.gov.pl/" target="_blank" title=""><img class="logo" src="{% static 'images/mkidn_logo_fit.jpg' %}"/></a>
+        </p>
+        <p>
+          <a class="logo_link " href="http://www.ihuw.pl/" target="_blank" title=""><img width="150" class="logo" src="{% static 'images/ihuw_logo_fit.gif' %}"/></a>         
+          <a class="logo_link " href="http://www.muzhp.pl/" target="_blank" title=""><img class="logo" src="{% static 'images/mhp_logo_fit.png' %}"/></a>
+          <a class="logo_link " href="http://www.bazhum.pl/" target="_blank" title=""><img class="logo" src="{% static 'images/bazhum_logo_fit.jpg' %}"/></a>
+        </p>    
+      </div>
+      <div class="additional_description">
+        <p>Kolekcja obejmuje: <br>
+        <span class="super_big">416 druków <br>
+        78673 stron</span>
+        </p>
+      </div>
+      </div>
+      
+        
+
+    </div>
+
+{% endblock %}
