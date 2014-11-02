@@ -3,6 +3,7 @@ import glob
 import os
 
 from metadane.models import Czasopismo
+
 import re
 from django.db.models import Q
 
@@ -47,10 +48,12 @@ def processQuery(request):
             if request.GET['tresc'] != '':
                 r=re.compile(request.GET['tresc'])
                 for row in qs:
-                    path = request.get_txt_page_path(row.lp)
+                    import czasWeb
+                    key = 'nr' + unicode(row.lp)
+                    path = czasWeb.__path__[0] + '/static/czasopisma/' + key + '/TXT/'
                     for infile in glob.glob( os.path.join(path, '*.txt')):
                             text=open(infile).read()
-                            if (re.findall(r,text)>0):
+                            if re.findall(r,text)>0:
                                 lp_list.append(row.lp)
                 qs = qs.filter(lp__in=lp_list)
         if 'dataOd' in request.GET:

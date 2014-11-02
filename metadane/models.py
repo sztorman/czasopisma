@@ -98,7 +98,3 @@ class Czasopismo(models.Model):
 
     class Meta:
         db_table = 'czasopismo'
-
-class CzasopismoTekst(models.Model):
-    id = models.IntegerField(primary_key=True)
-    text = models.CharField()
